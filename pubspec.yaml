@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   google_maps_flutter: ^0.5.16
   google_maps_webservice: ^0.0.14
+  fluttertoast: 2.2.11
 
 dev_dependencies:
   flutter_test:

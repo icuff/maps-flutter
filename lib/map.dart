@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/directions.dart' as Dir;
+import 'package:fluttertoast/fluttertoast.dart';
 
 class MapApp extends StatelessWidget {
   @override
@@ -35,8 +36,10 @@ class _MapPageState extends State<MapPage> {
   @override
   void initState() {
     super.initState();
+    DateTime begin = DateTime.now();
     setMarkers();
     getMapRoute();
+    showToast(begin, DateTime.now());
   }
 
   void setMarkers() {
@@ -99,6 +102,18 @@ class _MapPageState extends State<MapPage> {
     setState(() {
       polylines = polylinesLocal;
     });
+  }
+
+  void showToast(DateTime begin, DateTime end) {
+    String duration = end.difference(begin).inMilliseconds.toString();
+    Fluttertoast.showToast(
+        msg: 'Finished in ' + duration + 'ms',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
   }
 
   @override
